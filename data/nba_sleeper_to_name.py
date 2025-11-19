@@ -21,7 +21,7 @@ if __name__ == "__main__":
     print(f"Loaded {len(players)} players.")
 
     # Save to JSON file
-    with open("nba_players.json", "w", encoding="utf-8") as f:
+    with open("data/json/nba_players.json", "w", encoding="utf-8") as f:
         json.dump(players, f, ensure_ascii=False, indent=2)
 
-    print("Saved to nba_players.json")
+    print("Saved to data/json/nba_players.json")

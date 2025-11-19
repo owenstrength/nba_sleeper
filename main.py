@@ -14,6 +14,16 @@ def main():
     week = int(input("Enter the week number: "))
     team_id = int(input("Enter your team ID: "))
     filename = get_week_data_filename(week)
+
+    username = input("Enter your Sleeper username: ").strip()
+    user_id = SleeperAPI.get_user_id_from_username(username)
+
+    print(f"Retrieved user ID: {user_id}")
+
+    leagues = SleeperAPI.get_leagues_for_user(user_id)
+    print("Leagues for user:")
+    print(json.dumps(leagues, indent=2))
+    print("\n")
     
     # Check if the JSON file for this week already exists
     if os.path.exists(filename):
