@@ -82,9 +82,9 @@ def player_names_to_fantasy_stats(player_names):
     for name in player_names:
         try:
             player_id = NBAApiClient.get_player_id_from_name(name)
-            time.sleep(0.05)
+            time.sleep(0.5)
             game_log = NBAApiClient.get_player_game_log(player_id)
-            time.sleep(0.05)
+            time.sleep(0.5)
             mean, stddev = FantasyData.get_fantasy_stats(game_log)
             num_games = len(game_log)
             player_fantasy_stats[name] = (mean, stddev, num_games)

@@ -64,37 +64,6 @@ def main():
 
     print(f"Your roster ID in league {player_info['main_league_id']}: {roster_id}")
 
-    # enter the week number
-    week = int(input("Enter the week number: "))
-    print(f"Using main league ID: {player_info['main_league_id']}")
-    weekly_matchups = SleeperAPI.get_week_matchups(week)
-    print(f"Weekly Matchups for Week {week}:")
-
-    players_map = json.load(open("nba_players.json", "r", encoding="utf-8"))
-    player_team_choices = []
-    for matchup in weekly_matchups:
-        choice_str = "Team ID " + str(matchup['roster_id'])
-        choice_str += " | Players: " + ", ".join([players_map.get(sid, "Unknown Player") for sid in matchup['starters'][:3]])
-        player_team_choices.append(choice_str)
-
-    selected_team = questionary.select(
-        "Select your team from the weekly matchups:",
-        choices=player_team_choices
-    ).ask()
-    selected_roster_id = int(selected_team.split(" | ")[0].split(" ")[2])
-    print(f"You selected roster ID: {selected_roster_id}")
-
-    # your matchup will be the one with the same matchup_id but different roster_id
-    opponent = next(
-        m for m in weekly_matchups 
-        if m['matchup_id'] == next(m2['matchup_id'] for m2 in weekly_matchups if m2['roster_id'] == selected_roster_id) 
-        and m['roster_id'] != selected_roster_id
-    )
-    print(f"Your opponent roster ID: {opponent['roster_id']}")
-    # print opponent players
-    print("Opponent Players: " + ", ".join([players_map.get(sid, "Unknown Player") for sid in opponent['starters']]))
-
-
 
 
 

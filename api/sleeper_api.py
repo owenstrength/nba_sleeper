@@ -30,7 +30,7 @@ class SleeperAPI:
     
     @staticmethod
     def get_name_from_sleeper_id(sleeper_id):
-        with open("nba_players.json", "r", encoding="utf-8") as f:
+        with open("data/json/nba_players.json", "r", encoding="utf-8") as f:
             id_to_name = json.load(f)
         return id_to_name.get(sleeper_id, "Unknown Player")
     
@@ -43,6 +43,12 @@ class SleeperAPI:
         else:
             raise Exception(f"Failed to fetch league info: {response.status_code}")
         
+    @staticmethod
+    def download_players_complete_info():
+        url = 'https://api.sleeper.app/v1/players/nba'
+        response = requests.get(url)
+        with open("data/json/players_complete_info.json", "w") as f:
+            json.dump(response.json(), f, indent=2)
     
 
     @staticmethod

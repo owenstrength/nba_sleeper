@@ -23,7 +23,7 @@ The project is organized into the following directories:
    ```bash
    python data/nba_sleeper_to_name.py
    ```
-   This will download and save the player ID mapping to `nba_players.json`.
+   This will download and save the player ID mapping to `data/json/nba_players.json`.
 
 2. **Run the analysis**:
    ```bash

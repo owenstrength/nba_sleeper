@@ -1,6 +1,5 @@
-__pycache__/
+__pycache__*
 # any __pycache__ directories
-
 api/__pycache__/
 *.pyc
 
